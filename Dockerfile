@@ -1,14 +1,8 @@
 FROM node:16
-
 WORKDIR /app
-
 COPY package.json package.json
-COPY yarn.lock yarn.lock
-
-RUN yarn install
-
+COPY package-lock.json package-lock.json
+RUN npm ci
 COPY . .
-
-RUN yarn build
-
-CMD ["yarn", "preview"]
+RUN npm run build
+CMD ["npm", "run", "preview"]
