@@ -1,4 +1,4 @@
-# Use an official Node runtime as the base image
+# Use an official Node runtime as a parent image
 FROM node:18-alpine
 
 # Set the working directory in the container
@@ -10,14 +10,14 @@ COPY package*.json ./
 # Install dependencies
 RUN npm ci
 
-# Copy the rest of the application code
+# Copy the rest of your app's source code
 COPY . .
 
-# Build the Next.js application
+# Build your Next.js app
 RUN npm run build
 
-# Expose the port Coherence expects the app to run on
+# Expose the port the app runs on
 EXPOSE 8080
 
-# Start the application
+# Start the app
 CMD ["npm", "start"]
